@@ -1,0 +1,153 @@
+body{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    background-color: #f0f2f8;
+}
+
+:focus{
+    outline: none !important;
+}
+
+.main{
+    /*padding-left: 20px;*/
+    /*padding-right: 20px;*/
+}
+
+.dashboard_caption{
+    font-size: 40px;
+}
+
+.bot_panel{
+    background: white;
+    width: 283px;
+    border-radius: 20px;
+    /*float:left;*/
+    display: inline-block;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    cursor:pointer;
+}
+
+
+.bot_panel_create{
+    width: 283px;
+    height: 204.7px;
+    border-radius: 10px;
+    /*float:left;*/
+    margin-right: 16px;
+    margin-bottom: 16px;
+    border: 1px dashed gray;
+    vertical-align: middle;
+    text-align:center;
+    padding-top: 75px;
+}
+
+.bot_caption{
+    font-size: 17px;
+    padding-left: 10px;
+    margin-top:20px;
+    font-weight: bold;
+    color: #1a5bc3;
+    border-left: 3px solid #1a5bc3;
+}
+
+.bot_date_caption{
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #a2afc1;
+}
+
+.bot_preview{
+    height: 70px;
+    background: #009688;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.bot_date{
+    padding: 10px;
+    color: #a2afc1;
+}
+
+.bot_date > span{
+    vertical-align: middle;
+}
+
+.bot_buttons{
+    text-align: center;
+}
+
+.leftMenu{
+    height: 900px;
+    padding-left: 15px;
+    padding-right: 60px;
+    padding-top: 50px;
+    border-top-right-radius: 100px;
+    /*background: #2261c6;*/
+}
+
+.row {
+    margin-right: 0px;
+}
+
+.botList_caption{
+    color: #2261c6;
+    font-size: 30px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #2361c64a;
+}
+
+.menuButton {
+    margin-right: 12px !important;
+    text-transform: uppercase;
+    transition: .2s;
+    color: #0000008a;
+    padding: 10px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.menuButton:hover {
+    background: #f1f3f9;
+}
+
+
+.nameBot{
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.bot_menu{
+    margin-left: 30px;
+}
+
+.gridItemRight{
+    text-align: right;
+}
+
+.username{
+    font-size: 15px
+}
+
+.activeButton{
+    color: #2261c6 !important;
+    background: #f1f3f9;
+}
+
+.form{
+    background: white;
+    padding: 10px;
+    border-radius:10px;
+    width: 200px;
+    border: 1px solid #EAEAEA;
+    cursor:pointer;
+}
+
+.form_caption{
+    padding-bottom: 5px;
+    border-bottom: 1px solid gray;
+    color: gray;
+}
