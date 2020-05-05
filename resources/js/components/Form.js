@@ -22,8 +22,8 @@ export class Form extends Component {
 
 
     handleClick = () => {
-        const obj = this.props.currentBot.forms[this.props.index][this.props.id];
-        delete obj.child;
+        const obj = Object.assign({},this.props.currentBot.forms[this.props.index][this.props.id]);
+        delete obj.child; // только копию надо
         const data = {
             index: this.props.index,
             id: this.props.id,

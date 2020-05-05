@@ -72,9 +72,9 @@ export class PanelComponent extends Component {
                     component="nav"
                     aria-labelledby="nested-list-subheader"
                     subheader={
-                        <ListSubheader component="div" id="nested-list-subheader">
-                            Components list
-                        </ListSubheader>
+                        <div style={ {padding: 10}}>
+                            <div className={'panel_caption'}>Components list</div>
+                        </div>
                     }
                 >
                     <ListItem button onClick={this.handleClick}>

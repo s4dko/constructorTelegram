@@ -5,3 +5,8 @@ export const setCurrentProps = data => ({
     id: data.id,
     payload: data.props
 })
+
+export const updateProps = data => ({
+    type: 'UPDATE_PROPS',
+    payload: data.props
+})

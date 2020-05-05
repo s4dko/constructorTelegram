@@ -151,3 +151,14 @@ body{
     border-bottom: 1px solid gray;
     color: gray;
 }
+
+.property_panel{
+    padding: 10px 20px 10px 10px;
+}
+
+.panel_caption{
+    color: #0000008a;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align:center;
+}
