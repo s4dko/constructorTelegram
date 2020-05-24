@@ -24,11 +24,13 @@ import {logout} from "../actions/user_action";
 import {blockedUI} from "../actions/ui_action";
 import UserService from "../service/UserService";
 import Grid from "@material-ui/core/Grid";
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import AppsIcon from '@material-ui/icons/Apps';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ForumIcon from '@material-ui/icons/Forum';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+
 import '../css/style.css'
 
 const styles = theme => ({
@@ -76,6 +78,7 @@ class MenuAppBar extends Component{
         const { classes } = this.props;
         const { history } = this.props;
         const name = this.props.location.pathname.split('/')[1];
+        const botId = this.props.location.pathname.split('/')[2];
         const botParam = this.props.location.pathname.split('/')[3];
 
         return (
@@ -84,7 +87,9 @@ class MenuAppBar extends Component{
                     <Toolbar style={ {paddingLeft:0 }}>
                         <Grid container alignItems={'center'}>
                             <Grid item xs={2}>
-                                <div>Telegrambot</div>
+                                <div class={'logo'}>
+                                    <span><span style={ {color: '#1b5ac3', fontWeight: '800'}}>Bot</span>paint</span>
+                                </div>
                             </Grid>
 
 
@@ -102,12 +107,12 @@ class MenuAppBar extends Component{
                                             aria-haspopup="true"
                                             color="inherit"
                                             onClick={() => history.push('/dashboard')}
-                                        ><ArrowBackIosIcon /></IconButton>
+                                        ><KeyboardArrowLeftIcon /></IconButton>
                                         <label className={'nameBot'} htmlFor={'icon_back'}>{this.props.currentBot.name}</label>
 
                                         <span className={'bot_menu'}>
-                                            <span className={`menuButton ${name == 'bot' ? 'activeButton' : ''}`}  ><AppsIcon fontSize={'small'}/> Constructor</span>
-                                            <span className={`menuButton ${botParam == 'settings' ? 'activeButton' : ''}`} ><SettingsIcon fontSize={'small'}/> Settings</span>
+                                            <span className={`menuButton ${name == 'bot' && botParam == null ? 'activeButton' : ''}`}  onClick={() => history.push( {pathname: '/bot/'+botId})}><AppsIcon fontSize={'small'}/> Constructor</span>
+                                            <span className={`menuButton ${botParam == 'settings' ? 'activeButton' : ''}`} onClick={() => history.push( {pathname: '/bot/'+botId+'/settings' })} ><SettingsIcon fontSize={'small'}/> Settings</span>
                                             <span className={`menuButton ${botParam == 'messages' ? 'activeButton' : ''}`} ><ForumIcon fontSize={'small'}/> Messages</span>
                                         </span>
                                     </div>
@@ -146,7 +151,12 @@ class MenuAppBar extends Component{
                                             onClick={this.handleMenu}
                                             color="inherit"
                                         >
-                                            <Avatar className={classes.avatar}>H</Avatar>
+                                            { this.props.user.avatar != "noavatar" ?
+                                                (<Avatar alt={this.props.user.currentUser.name} src={'/images/avatar/' + this.props.user.currentUser.avatar} />)
+                                                :
+                                                ( <Avatar className={classes.avatar}>H</Avatar>)
+                                            }
+
                                         </IconButton>
 
 

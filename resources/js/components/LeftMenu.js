@@ -119,53 +119,7 @@ class LeftMenu extends Component{
         return(
             <div>
 
-                <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-                    <form onSubmit={this.handleSubmit}>
-                        <DialogTitle id="form-dialog-title">Create new Telegram bot</DialogTitle>
-                        <DialogContent>
 
-                            <div>
-                                <FormControl variant="outlined"  fullWidth >
-                                    <InputLabel id="type_input" >Type</InputLabel>
-                                    <Select
-                                        labelId="type_input"
-                                        id="type_select"
-                                        value={this.state.type}
-                                        onChange={this.handleChange}
-                                        label="Type"
-                                    >
-                                        <MenuItem value={'default'}>Default</MenuItem>
-                                        <MenuItem value={'shop'}>Shop</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </div>
-                            <div>
-                                <TextField
-                                    id="name_input"
-                                    label="Name"
-                                    placeholder="Enter name your Telegram bot"
-                                    fullWidth
-                                    margin="normal"
-                                    style={ {width: 400}}
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                    variant="outlined"
-                                    onChange={this.handleInputChange}
-                                    required={true}
-                                />
-                            </div>
-                        </DialogContent>
-                        <DialogActions>
-                            <Button onClick={this.handleClose} color="primary">
-                                Cancel
-                            </Button>
-                            <Button type={'submit'} color="primary">
-                                Create
-                            </Button>
-                        </DialogActions>
-                    </form>
-                </Dialog>
 
 
 

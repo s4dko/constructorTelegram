@@ -15,6 +15,7 @@ import {store} from "./app";
 import EditBot from "./pages/EditBot";
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import createMuiTheme from  './theme'
+import SettingsBot from "./pages/SettingsBot";
 
 const theme = createMuiTheme;
 
@@ -33,7 +34,8 @@ class Routes extends Component{
                             <Route path="/login" component={Login} />
                             <Route path="/register" component={Register}  />
                             <PrivateRoute path="/dashboard" component={Dashboard} />
-                            <PrivateRoute path="/bot/:id" component={EditBot} />
+                            <PrivateRoute path="/bot/:id" exact component={EditBot} />
+                            <PrivateRoute path="/bot/:id/settings" component={SettingsBot} />
                             <Route path="/" exact component={Home} />
                         </BlockUi>
                     </Switch>

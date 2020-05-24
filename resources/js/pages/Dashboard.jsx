@@ -16,10 +16,45 @@ import {getAllBots} from "../actions/bots_action";
 
 import BotPanel from "../components/BotPanel";
 import LeftMenu from "../components/LeftMenu";
+import Container from "@material-ui/core/Container";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import TextField from "@material-ui/core/TextField";
+import DialogActions from "@material-ui/core/DialogActions";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import AddIcon from "@material-ui/icons/Add";
+import {withStyles} from "@material-ui/core/styles";
+import {logout} from "../actions/user_action";
+
+
+const styles = theme => ({
+    buttonCreateBot: {
+        background: '#2261c6',
+        color: '#FFFFFF',
+        fontWeight: 'bold',
+        borderRadius: '10px',
+        padding: '10px ',
+        '&:hover': {
+            background: '#1b5ac3de;'
+        }
+    }
+});
+
 
 export class Dashboard extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            open: false,
+            type: 'default',
+            name: ''
+        }
     }
 
     componentDidMount(){
@@ -32,7 +67,8 @@ export class Dashboard extends Component {
                 this.props.unblockedUI();
             }
         }).catch((e) => {
-            console.log( e.message);
+            this.props.logout();
+            this.props.history.push({ pathname: '/login' });
         });
 
 
@@ -46,32 +82,139 @@ export class Dashboard extends Component {
     }
 
 
+    handleClickOpen = () => {
+        this.setState({
+            open: true
+        });
+    };
+
+    handleClose = () => {
+        this.setState({
+            open: false
+        });
+    };
+
+    handleChange = (e) => {
+        this.setState({
+            type: e.target.value
+        });
+    }
+
+
+    handleSubmit = e => {
+        e.preventDefault();
+
+        const datasend = {
+            type: this.state.type,
+            name: this.state.name
+        }
+
+        this.props.blockedUI();
+        this.handleClose();
+        BotService.create(datasend).then( (data) => {
+            const res = data.status;
+            if ( res == 200){
+                this.props.getBots(data.result);
+                this.props.unblockedUI();
+            }
+        }).catch((e) => {
+            console.log( e.message );
+        });
+    }
+
+    handleInputChange = e => {
+        this.setState({
+            name: e.target.value
+        })
+    }
+
+
 
     render() {
+        const { classes } = this.props;
 
         return (
-            <Grid container>
-                <Grid item xs={2}>
-                    <div style={ {height:900, backgroundColor: '#2261c6'}}></div>
-                </Grid>
-                <Grid item xs={10}>
-                    <div style={ {paddingRight: 20, paddingLeft:20}}>
-                        <div className={'botList_caption my-5'}>
-                            <span>My Bots ({this.props.bots.count})</span>
-                        </div>
-                        <div >
-                            { this.props.bots.count > 0 ?
-                                this.props.bots.botlist.map( (item) =>
-                                    <BotPanel key={item.id} name={item.name} id={item.unique_id} item={item} />
-                                )
-                                :
-                                <div>text2</div>
-                            }
+            <Container className={'wrapper'}>
+                <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+                    <form onSubmit={this.handleSubmit}>
+                        <DialogTitle id="form-dialog-title">Create new Telegram bot</DialogTitle>
+                        <DialogContent>
+
+                            <div>
+                                <FormControl variant="outlined"  fullWidth >
+                                    <InputLabel id="type_input" >Type</InputLabel>
+                                    <Select
+                                        labelId="type_input"
+                                        id="type_select"
+                                        value={this.state.type}
+                                        onChange={this.handleChange}
+                                        label="Type"
+                                    >
+                                        <MenuItem value={'default'}>Default</MenuItem>
+                                        <MenuItem value={'shop'}>Shop</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </div>
+                            <div>
+                                <TextField
+                                    id="name_input"
+                                    label="Name"
+                                    placeholder="Enter name your Telegram bot"
+                                    fullWidth
+                                    margin="normal"
+                                    style={ {width: 400}}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    variant="outlined"
+                                    onChange={this.handleInputChange}
+                                    required={true}
+                                />
+                            </div>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={this.handleClose} color="primary">
+                                Cancel
+                            </Button>
+                            <Button type={'submit'} color="primary">
+                                Create
+                            </Button>
+                        </DialogActions>
+                    </form>
+                </Dialog>
+
+
+
+
+
+
+
+                    <div style={ { height:'100%'}}>
+
+                        <div className={'pt-5'} >
+                            <div className={'botList_caption '}>
+                                <span style={ { fontWeight: '100'}}>My bots ({this.props.bots.count})</span>
+                                <Button
+                                    className={classes.buttonCreateBot}
+                                    startIcon={<AddIcon />}
+                                    onClick={this.handleClickOpen}
+                                    style={ {float:'right'}}
+                                >
+                                    Create new bot
+                                </Button>
+                            </div>
+                            <div className={'pt-3'}>
+                                { this.props.bots.count > 0 ?
+                                    this.props.bots.botlist.map( (item) =>
+                                        <BotPanel key={item.id} name={item.name} id={item.unique_id} item={item} />
+                                    )
+                                    :
+                                    <div>text2</div>
+                                }
+                            </div>
                         </div>
                     </div>
-                </Grid>
-            </Grid>
-
+            </Container>
         );
     }
 }
@@ -91,8 +234,11 @@ const mapDispatchToProps = dispatch => ({
     },
     getBots: function(bots){
         dispatch( getAllBots(bots) );
+    },
+    logout: function(){
+        dispatch( logout())
     }
 })
 
 
-export default withRouter( connect(mapStateToProps,mapDispatchToProps)(Dashboard) );
+export default withRouter( connect(mapStateToProps,mapDispatchToProps) (withStyles(styles)(Dashboard) ));

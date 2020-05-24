@@ -22,6 +22,7 @@ import configureStore from "./store";
 import setAuthorizationToken from "./utils/setAuthorizationToken";
 import {setCurrentUser} from "./actions/user_action";
 import Routes from "./routes";
+import Footer from "./components/Footer";
 export const store = configureStore(history)
 
 
@@ -45,6 +46,8 @@ class App extends Component{
                     <Navbar/>
 
                     <Routes />
+
+                    <Footer />
                 </ConnectedRouter>
             </Provider>
 

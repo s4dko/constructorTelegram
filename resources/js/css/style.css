@@ -1,5 +1,5 @@
 body{
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family: "Helvetica", "Arial", sans-serif;
     background-color: #f0f2f8;
 }
 
@@ -79,7 +79,6 @@ body{
 }
 
 .leftMenu{
-    height: 900px;
     padding-left: 15px;
     padding-right: 60px;
     padding-top: 50px;
@@ -92,11 +91,17 @@ body{
 }
 
 .botList_caption{
-    color: #2261c6;
+    /*color: #2261c6;*/
+    /*font-size: 30px;*/
+    /*font-weight: bold;*/
+    /*padding-bottom: 10px;*/
+    /*border-bottom: 2px solid #2361c64a;*/
+    color: #a2afc1;
     font-size: 30px;
     font-weight: bold;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #2361c64a;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .menuButton {
@@ -129,7 +134,8 @@ body{
 }
 
 .username{
-    font-size: 15px
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .activeButton{
@@ -141,14 +147,13 @@ body{
     background: white;
     padding: 10px;
     border-radius:10px;
-    width: 200px;
-    border: 1px solid #EAEAEA;
+    width: 220px;
+    border: 2px solid #EAEAEA;
     cursor:pointer;
 }
 
 .form_caption{
     padding-bottom: 5px;
-    border-bottom: 1px solid gray;
     color: gray;
 }
 
@@ -161,4 +166,89 @@ body{
     letter-spacing: 2px;
     text-transform: uppercase;
     text-align:center;
+}
+
+
+.component{
+    background: white;
+    padding: 10px;
+    border-radius:5px;
+    cursor:pointer;
+    width:100%;
+    border: 2px solid #EAEAEA;
+    transition: .2s;
+    margin-bottom: 5px;
+}
+
+.component_icon{
+    color:black;
+}
+
+.component_text{
+    color:black;
+}
+
+.component:last-child{
+    margin-bottom: 0;
+}
+
+.component:hover{
+    background: #f6f6f6;
+}
+
+.component_active{
+    padding: 10px;
+    border-radius:5px;
+    cursor:pointer;
+    width:100%;
+    color: #2261c6;
+    margin-bottom: 5px;
+    border: 2px solid #2261c6;
+}
+.component_active:last-child{
+    margin-bottom: 0;
+}
+
+.wrapper{
+    min-height: calc(100vh - 110px)
+}
+
+.footer {
+    background: #1b5ac3;
+    height: 45px;
+}
+
+.buttonCreateBot{
+    background: #2261c6;
+    color: #2261c6;
+    font-weight:bold;
+    border-radius: 50px;
+    padding: 10px;
+}
+
+.addBtnOverForm{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #ffffffbf;
+    height: 100%;
+    width: 220px;
+    border-radius: 10px;
+    text-align: center;
+    color: #757575;
+}
+
+.logo{
+    text-transform: uppercase;
+    font-size: 24px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    padding-left: 24px;
+    color: #2361c6a6;
+    font-weight: 300;
+}
+
+.props_empy{
+    height:100%;
+    color: gray;
+    text-align: center;
 }

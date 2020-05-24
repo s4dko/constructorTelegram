@@ -53,6 +53,7 @@ class ComposerStaticInitaac0f1ea653bd934cc65435af2ccd03a
         'T' => 
         array (
             'Tymon\\JWTAuth\\' => 14,
+            'TuriBot\\' => 8,
             'TijsVerkoyen\\CssToInlineStyles\\' => 31,
             'Tests\\' => 6,
         ),
@@ -198,6 +199,10 @@ class ComposerStaticInitaac0f1ea653bd934cc65435af2ccd03a
         'Tymon\\JWTAuth\\' => 
         array (
             0 => __DIR__ . '/..' . '/tymon/jwt-auth/src',
+        ),
+        'TuriBot\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/davtur19/turibot/src',
         ),
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
@@ -493,6 +498,7 @@ class ComposerStaticInitaac0f1ea653bd934cc65435af2ccd03a
     public static $classMap = array (
         'App\\Bot' => __DIR__ . '/../..' . '/app/Bot.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\CronUrl' => __DIR__ . '/../..' . '/app/CronUrl.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
@@ -501,10 +507,12 @@ class ComposerStaticInitaac0f1ea653bd934cc65435af2ccd03a
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
+        'App\\Http\\Controllers\\BotController' => __DIR__ . '/../..' . '/app/Http/Controllers/BotController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/DashboardController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\ReactController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReactController.php',
+        'App\\Http\\Controllers\\TelegramApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/TelegramApiController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -4727,6 +4735,10 @@ class ComposerStaticInitaac0f1ea653bd934cc65435af2ccd03a
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+        'TuriBot\\Api' => __DIR__ . '/..' . '/davtur19/turibot/src/Api.php',
+        'TuriBot\\ApiInterface' => __DIR__ . '/..' . '/davtur19/turibot/src/ApiInterface.php',
+        'TuriBot\\Client' => __DIR__ . '/..' . '/davtur19/turibot/src/Client.php',
+        'TuriBot\\EasyVars' => __DIR__ . '/..' . '/davtur19/turibot/src/EasyVars.php',
         'Tymon\\JWTAuth\\Blacklist' => __DIR__ . '/..' . '/tymon/jwt-auth/src/Blacklist.php',
         'Tymon\\JWTAuth\\Claims\\Audience' => __DIR__ . '/..' . '/tymon/jwt-auth/src/Claims/Audience.php',
         'Tymon\\JWTAuth\\Claims\\Claim' => __DIR__ . '/..' . '/tymon/jwt-auth/src/Claims/Claim.php',

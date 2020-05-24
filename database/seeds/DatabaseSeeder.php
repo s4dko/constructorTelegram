@@ -17,6 +17,9 @@ class DatabaseSeeder extends Seeder
         $data = ['forms' => [
             ['form_1' => [
                 'name' => 'Форма',
+                'command' => '/start',
+                'top' => 0,
+                'left' => 0,
                 'child' => [
                     'label_1' => [
                         'text' => 'Мой текст'
@@ -30,6 +33,8 @@ class DatabaseSeeder extends Seeder
             ]],
             ['form_2' => [
                 'name' => 'Форма 2',
+                'top' => 0,
+                'left' => 230,
                 'child' => [
                     'label_1' => [
                         'text' => "Новый текст"
@@ -42,6 +47,7 @@ class DatabaseSeeder extends Seeder
             'id' => 1,
             'name' => 's4dko',
             'email' => 's4dko@gmail.com',
+            'avatar' => '1.jpg',
             'password' => Hash::make('123456'),
             'created_at' => '2018-02-01 00:00:00',
             'updated_at' => '2018-02-01 00:00:00'

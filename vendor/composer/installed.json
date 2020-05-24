@@ -102,6 +102,46 @@
         ]
     },
     {
+        "name": "davtur19/turibot",
+        "version": "1.5",
+        "version_normalized": "1.5.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/davtur19/TuriBot.git",
+            "reference": "0ac8ea1620f26cf55a734424ef38ca169b4e10fc"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/davtur19/TuriBot/zipball/0ac8ea1620f26cf55a734424ef38ca169b4e10fc",
+            "reference": "0ac8ea1620f26cf55a734424ef38ca169b4e10fc",
+            "shasum": ""
+        },
+        "require": {
+            "ext-curl": "*",
+            "ext-json": "*",
+            "php": "^7.1"
+        },
+        "time": "2020-04-24T16:03:15+00:00",
+        "type": "project",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "TuriBot\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "AGPL-3.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "davtur19",
+                "email": "dav.tur19@gmail.com"
+            }
+        ],
+        "description": "A simple way to communicate with Telegram APIs in PHP."
+    },
+    {
         "name": "dnoegel/php-xdg-base-dir",
         "version": "v0.1.1",
         "version_normalized": "0.1.1.0",

@@ -25,6 +25,10 @@ import TextFieldsIcon from '@material-ui/icons/TextFields';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import HttpIcon from '@material-ui/icons/Http';
 
+import Label from   './forms/label'
+import InlineButtons from "./forms/inlineButtons";
+import Picture from "./forms/picture";
+
 const styles = theme => ({
     root: {
         width: '100%',
@@ -67,7 +71,7 @@ export class PanelComponent extends Component {
         const { classes } = this.props;
 
         return (
-            <div>
+            <div style={ {height: '100%'}}>
                 <List
                     component="nav"
                     aria-labelledby="nested-list-subheader"
@@ -83,18 +87,21 @@ export class PanelComponent extends Component {
                     </ListItem>
                     <Collapse in={this.state.open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
-                                <ListItemIcon>
-                                    <TextFieldsIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Text" />
+                            <ListItem className={classes.nested}>
+                                <Label status="component"/>
                             </ListItem>
-                            <ListItem button className={classes.nested}>
-                                <ListItemIcon>
-                                    <RadioButtonCheckedIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Buttons" />
+                            <ListItem className={classes.nested}>
+                                <InlineButtons status="component"/>
                             </ListItem>
+                            <ListItem className={classes.nested}>
+                                <Picture status="component"/>
+                            </ListItem>
+                            {/*<ListItem button className={classes.nested}>*/}
+                            {/*    <ListItemIcon>*/}
+                            {/*        <RadioButtonCheckedIcon />*/}
+                            {/*    </ListItemIcon>*/}
+                            {/*    <ListItemText primary="Buttons" />*/}
+                            {/*</ListItem>*/}
                         </List>
                     </Collapse>
 

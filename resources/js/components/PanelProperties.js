@@ -3,12 +3,11 @@ import {blockedUI, unblockedUI} from "../actions/ui_action";
 import {getAllBots} from "../actions/bots_action";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {Dashboard} from "../pages/Dashboard";
 import TextField from "@material-ui/core/TextField";
 import translate from '../translate'
 import {updateForms} from "../actions/currentBot_action";
-import {update} from "sweetalert2";
 import {updateProps} from "../actions/currentProps_action";
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 export class PanelProperties extends Component {
 
@@ -36,6 +35,10 @@ export class PanelProperties extends Component {
              currentBotForm[this.props.currentProps.index][nameForm[0]][nameProps] = valueProps;
              this.props.updateForm(currentBotForm);
             //console.log( currentBotForm[this.props.currentProps.index][nameForm[0]][nameProps] );
+        }else{
+            console.log('txt');
+            currentBotForm[this.props.currentProps.index][nameForm[0]].child[this.props.currentProps.id][nameProps] = valueProps;
+            this.props.updateForm(currentBotForm);
         }
 
         // update props
@@ -58,14 +61,19 @@ export class PanelProperties extends Component {
                     placeholder="Enter your value"
                     fullWidth
                     margin="normal"
-                    value={value}
+                    value={ (value == null) ? "" : value }
                     data-key={key}
                     variant="outlined"
                     onChange={this.handleChange}
                 /> )
             }
         }else {
-            items.push(<div>Neytu</div>);
+            items.push(<div className={'props_empy'}>
+                            <div style={ {marginTop: 310}}>
+                                <div><HelpOutlineIcon /></div>
+                                <div>Dont select any component</div>
+                            </div>
+                        </div>);
         }
 
 

@@ -41,8 +41,8 @@ export class Register extends Component {
             return <Redirect to={'/dashboard'} />
         }
         return (
-            <Container maxWidth="md">
-                <Paper variant={'outlined'} className={'my-3'}>
+            <Container maxWidth="md" className={'wrapper'}>
+                <Paper variant={'outlined'}>
                     <h3 className="card-header">REGISTER</h3>
                     <div className="card-body">
 

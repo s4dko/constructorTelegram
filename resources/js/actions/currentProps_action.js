@@ -10,3 +10,7 @@ export const updateProps = data => ({
     type: 'UPDATE_PROPS',
     payload: data.props
 })
+
+export const deleteCurrentProps = () => ({
+    type: 'DELETE_PROPS',
+})

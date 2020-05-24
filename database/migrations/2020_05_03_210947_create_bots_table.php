@@ -24,7 +24,7 @@ class CreateBotsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('type')->default('default');
-            $table->string('data',555)->nullable();
+            $table->text('data')->nullable();
             $table->string('avatar')->default('noavatar');
             $table->string('unique_id')->nullable();
             $table->string('token')->nullable();

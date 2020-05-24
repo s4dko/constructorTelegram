@@ -23,7 +23,7 @@ export default createMuiTheme({
     // },
     palette: {
         secondary: {
-            main: '#6a9dec'
+            main: '#EAEAEA'
         },
         primary: {
             main: '#2261c6'
@@ -33,6 +33,9 @@ export default createMuiTheme({
         },
         mygray:{
             main: '#e5e7ed'
+        },
+        save:{
+            main: '#27ae60'
         }
     }
 });

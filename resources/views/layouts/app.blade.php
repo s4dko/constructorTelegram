@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -33,7 +34,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li>text</li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -73,8 +74,28 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="row">
+                <div class="col-md-3">
+                    text
+                </div>
+                <div class="col-md-6">
+                    @yield('content')
+                </div>
+                <div class="col-md-3">
+                    <div>
+                        text
+                    </div>
+                </div>
+            </div>
+
+
         </main>
+
+
+
+        <footer>
+            text
+        </footer>
     </div>
 </body>
 </html>

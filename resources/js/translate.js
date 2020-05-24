@@ -3,7 +3,8 @@ export default function translate(name) {
         name: "Name",
         text: "Text",
         type: "Type",
-        data: "Action data"
+        data: "Action data",
+        command: "Command"
     };
 
     return translate[name];

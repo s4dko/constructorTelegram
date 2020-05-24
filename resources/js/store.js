@@ -7,6 +7,7 @@ import UiReducer from "./reducers/ui";
 import BotReducer from "./reducers/bot";
 import currentBotReducer from './reducers/currentBot'
 import currentPropsReducer from './reducers/currentProps'
+import currentComponentReduer from './reducers/currentComponent'
 
 import {connectRouter} from 'connected-react-router'
 
@@ -31,7 +32,8 @@ export default function configureStore(routerHistory) {
         ui: UiReducer,
         bots: BotReducer,
         currentBot: currentBotReducer,
-        currentProps: currentPropsReducer
+        currentProps: currentPropsReducer,
+        currentComponent: currentComponentReduer
     });
 
 

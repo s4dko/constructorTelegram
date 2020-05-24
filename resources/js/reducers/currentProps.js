@@ -10,6 +10,8 @@ export default function reducer(state = initialState, action) {
             return {...state, index: action.index, id: action.id, props: action.payload }
         case 'UPDATE_PROPS':
             return {...state, props: action.payload }
+        case 'DELETE_PROPS':
+            return {index:null, id:"", props: ""}
         default:
             return state;
     }

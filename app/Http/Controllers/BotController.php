@@ -6,6 +6,7 @@ use App\Bot;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
 
 class BotController extends Controller
 {
@@ -41,6 +42,36 @@ class BotController extends Controller
         return response()->json(['status' => 200, 'result'=> ['count' => count($bots), 'list' => $bots ]] );
     }
 
+
+    public function save(Request $request){
+        $botId = $request->get('botId');
+        $data = $request->get('data');
+
+        $bot = Bot::where( ['unique_id' => $botId ] )->first();
+        $bot->data = $data;
+        $bot->save();
+
+//
+//        if ( $this->generateBotDir($botId, $data) ){
+//            return response()->json(['status' => 200, 'result'=> "success"] );
+//        }
+        return response()->json(['status' => 200, 'result'=> "success"] );
+//        return response()->json(['status' => 401, 'result'=> "error"] );
+    }
+
+    public function saveSettings( Request $request ){
+        $botId = $request->get('botId');
+        $name = $request->get('name');
+        $token = $request->get('token');
+
+        $bot = Bot::where( ['unique_id' => $botId ])->first();
+        $bot->name = $name;
+        $bot->token = $token;
+        $bot->save();
+
+        return response()->json(['status' => 200, 'result'=> "success"] );
+    }
+
     public function generateUniqueId(){
         $res = '';
         $arr = array_merge( range('A','Z'), range('0', '9'), range('a','z') );
@@ -56,5 +87,28 @@ class BotController extends Controller
         }
 
         return $res;
+    }
+
+    private function generateBotDir($botId, $data){
+        $publicDir = public_path();
+
+        $botsDir = $publicDir.'/bots';
+        $sourceDir = resource_path('sourceBot');
+
+        $currentDirBot = $botsDir.'/'.$botId;
+        if ( !File::isDirectory($currentDirBot)) {
+            if (!File::makeDirectory($currentDirBot, 0777, true)) {
+                return false;
+            }
+        }
+
+        File::deleteDirectory($currentDirBot);
+        if ( File::copyDirectory($sourceDir, $currentDirBot) ){
+            file_put_contents($currentDirBot.'/config.json', json_encode($data) );
+            return true;
+        }
+
+
+        return false;
     }
 }
