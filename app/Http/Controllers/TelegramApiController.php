@@ -10,10 +10,14 @@ class TelegramApiController
 {
     # api
     private $chat_id = null;
+    private $callback_id = null;
     private $client = null;
 
     # bot
     private $data;
+
+    # event
+    private $eventButtons = [];
 
     public function getUpdates($idBot, $offset)
     {
@@ -108,7 +112,17 @@ class TelegramApiController
                 }
 
 
-//                if (isset($update->callback_query)) {
+                if (isset($update->callback_query)) {
+//                    foreach ($this->eventButtons as $nameButton => $idForm) {
+                        if ($update->callback_query->data ) {
+                            $this->chat_id = $update->callback_query->message->chat->id;
+
+                            $this->showForm($update->callback_query->data);
+                            $this->client->answerCallbackQuery($update->callback_query->id, "Done!");
+                        }
+//                    }
+
+                }
 //
 //                    $id = $update->callback_query->id;
 //                    $message_chat_id = $update->callback_query->message->chat->id;
@@ -184,6 +198,17 @@ class TelegramApiController
 
     private function showForm($form_id ){
         $currentForm = null;
+        $menu = null;
+
+        $sendMessageParams = [
+            'id' => $this->chat_id,
+            'text' => null,
+            'parse_mode' => null,
+            'disable_web_page_preview' => null,
+            'disable_notification' => null,
+            'reply_to_message_id' => null,
+            'reply_markup' => null
+        ];
 
         # find form
         foreach($this->data->forms as $key => $value){
@@ -195,17 +220,31 @@ class TelegramApiController
             }
         }
 
+
         # components
         if ( $currentForm !== null){
             foreach ( $currentForm->child as $nameComponent => $properties ){
                 $nameComponent = explode('_', $nameComponent)[0];
                 switch ( $nameComponent ){
                     case 'label':
-                        $this->client->sendMessage($this->chat_id, $properties->text );
-                    break;
+                        $sendMessageParams['text'] = $properties->text;
+//                        $this->client->sendMessage($this->chat_id, $properties->text );
+                        break;
+                    case 'inlineButtons':
+                        foreach( $properties->buttons as $nameButton => $props){
+                            $menu["inline_keyboard"][][] = [
+                                'text' => $props->name,
+                                'callback_data' => $props->data//$nameButton
+                            ];
+                            $this->eventButtons[$nameButton] = $props->data; // button => form
+                        }
+                        $sendMessageParams['reply_markup'] = $menu;
+//                        print_r( $menu );
+                        break;
                 }
             }
 
+            $this->client->sendMessage($sendMessageParams['id'], $sendMessageParams['text'], null, null, null, null, $sendMessageParams['reply_markup']);
             return true;
         }
 

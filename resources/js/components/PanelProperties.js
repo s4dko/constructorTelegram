@@ -46,6 +46,7 @@ export class PanelProperties extends Component {
 
     handleChange = (e) => {
         var id = null;
+        var currentProps = null;
 
         if ( e.target.hasOwnProperty('name') )
             id = e.target.name.toString().split('-');
@@ -63,6 +64,9 @@ export class PanelProperties extends Component {
         if ( nameForm[0] === this.props.currentProps.id){ // значит форма
              currentBotForm[this.props.currentProps.index][nameForm[0]][nameProps] = valueProps;
              this.props.updateForm(currentBotForm);
+
+            currentProps = this.props.currentProps;
+            currentProps.props[nameProps] = valueProps;
             //console.log( currentBotForm[this.props.currentProps.index][nameForm[0]][nameProps] );
         }else{
             if( nameProps == 'buttons'){
@@ -72,16 +76,15 @@ export class PanelProperties extends Component {
                 currentBotForm[this.props.currentProps.index][nameForm[0]].child[this.props.currentProps.id].buttons[nameButton][namePropsButton] = valueProps ;
                 this.props.updateForm(currentBotForm);
 
-                const currentProps = this.props.currentProps;
+                currentProps = this.props.currentProps;
                 currentProps.props[nameProps][nameButton][namePropsButton] = valueProps;
-                this.props.updateProps( currentProps );
             }else{
                 currentBotForm[this.props.currentProps.index][nameForm[0]].child[this.props.currentProps.id][nameProps] = valueProps;
                 this.props.updateForm(currentBotForm);
 
-                const currentProps = this.props.currentProps;
+                currentProps = this.props.currentProps;
                 currentProps.props[nameProps] = valueProps;
-                this.props.updateProps( currentProps );
+
             }
 
             //console.log( currentBotForm );
@@ -89,7 +92,7 @@ export class PanelProperties extends Component {
         }
 
         // update props
-
+        this.props.updateProps( currentProps );
         // console.log( currentProps );
     }
 
