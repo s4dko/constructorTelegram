@@ -497,9 +497,13 @@ class ComposerStaticInitaac0f1ea653bd934cc65435af2ccd03a
 
     public static $classMap = array (
         'App\\Bot' => __DIR__ . '/../..' . '/app/Bot.php',
+        'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
+        'App\\Component' => __DIR__ . '/../..' . '/app/Component.php',
+        'App\\Console\\Commands\\everySecond' => __DIR__ . '/../..' . '/app/Console/Commands/everySecond.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\CronUrl' => __DIR__ . '/../..' . '/app/CronUrl.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Goods' => __DIR__ . '/../..' . '/app/Goods.php',
         'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -526,6 +530,7 @@ class ComposerStaticInitaac0f1ea653bd934cc65435af2ccd03a
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Store' => __DIR__ . '/../..' . '/app/Store.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/CorsService.php',

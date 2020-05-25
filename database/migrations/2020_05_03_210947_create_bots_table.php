@@ -28,7 +28,7 @@ class CreateBotsTable extends Migration
             $table->string('avatar')->default('noavatar');
             $table->string('unique_id')->nullable();
             $table->string('token')->nullable();
-            $table->string('user_id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
