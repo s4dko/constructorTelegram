@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
 
         $data = ['forms' => [
             ['form_1' => [
-                'name' => 'Форма',
+                'name' => '/start',
                 'command' => '/start',
                 'top' => 0,
                 'left' => 0,
@@ -24,15 +24,26 @@ class DatabaseSeeder extends Seeder
                     'label_1' => [
                         'text' => 'Мой текст'
                     ],
-                    'button_1' => [
-                        'name' => 'Кнопка 1',
-                        'type' => 'goForm',
-                        'data' => 'form_2'
+                    'inlineButtons_1' => [
+                        'buttons' => [
+                            'btn_1' => [
+                                'name' => 'Кнопка 2',
+                                'type' => 'goForm',
+                                'data' => 'form_2'
+                            ],
+                            'btn_2' => [
+                                'name' => 'Кнопка 2',
+                                'type' => 'goForm',
+                                'data' => 'form_3'
+                            ]
+                        ]
+
                     ]
                 ]
             ]],
             ['form_2' => [
                 'name' => 'Форма 2',
+                'command' => '',
                 'top' => 0,
                 'left' => 230,
                 'child' => [

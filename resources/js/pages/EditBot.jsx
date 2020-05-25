@@ -17,13 +17,20 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from '@material-ui/icons/Add';
 import {withStyles} from "@material-ui/core/styles";
-import {deleteCurrentProps} from "../actions/currentProps_action";
+import {deleteCurrentProps, setCurrentProps} from "../actions/currentProps_action";
 import SaveIcon from '@material-ui/icons/Save';
 import Alert from '@material-ui/lab/Alert';
 import UserService from "../service/UserService";
 import {logout} from "../actions/user_action";
 import GridLines from 'react-gridlines';
-
+import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
+import Backdrop from '@material-ui/core/Backdrop';
+import SpeedDial from '@material-ui/lab/SpeedDial';
+import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
+import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
+import Zoom from '@material-ui/core/Zoom';
+import CallToActionOutlinedIcon from '@material-ui/icons/CallToActionOutlined';
+import ViewStreamIcon from '@material-ui/icons/ViewStream';
 
 const styles = theme => ({
     absolute: {
@@ -37,12 +44,17 @@ const styles = theme => ({
         position: 'absolute',
         bottom: theme.spacing(8),
         right: theme.spacing(53),
-        zIndex: '9999'
+        zIndex: '9997'
     },
 
     save:{
         background: '#27ae60'
     }
+});
+
+const transitionDuration = theme => ({
+    enter: theme.transitions.duration.enteringScreen,
+    exit: theme.transitions.duration.leavingScreen,
 });
 
 
@@ -53,6 +65,10 @@ export class EditBot extends Component {
 
         this.state = {
             status: false,
+            open: false,
+            dragStatus: true,
+            x: 0,
+            y: 0
         }
     }
 
@@ -98,12 +114,37 @@ export class EditBot extends Component {
     }
 
     handleDrag = (e, ui) => {
-        const currentBotForm = this.props.currentBot.forms;
-        currentBotForm[this.props.currentProps.index][this.props.currentProps.id].top =  ui.y;
-        currentBotForm[this.props.currentProps.index][this.props.currentProps.id].left =  ui.x;
+        // this.setState({
+        //     x: ui.x,
+        //     y: ui.y
+        // });
+        //console.log(this.state.dragStatus) ;
+       // if ( this.state.dragStatus == true ){
+            const currentBotForm = this.props.currentBot.forms;
+            currentBotForm[this.props.currentProps.index][this.props.currentProps.id].top = ui.y ;
+            currentBotForm[this.props.currentProps.index][this.props.currentProps.id].left =  ui.x;
+            this.props.updateForm(currentBotForm);
+            // this.setState({
+            //     dragStatus: false
+            // });
+        //}
+        // const currentBotForm = this.props.currentBot.forms;
+        // currentBotForm[this.props.currentProps.index][this.props.currentProps.id].top =  ;
+        // currentBotForm[this.props.currentProps.index][this.props.currentProps.id].left =  ui.x;
 
-        this.props.updateForm(currentBotForm);
+        // this.props.updateForm(currentBotForm);
     };
+
+    handleStop = () =>{
+        // const currentBotForm = this.props.currentBot.forms;
+        // currentBotForm[this.props.currentProps.index][this.props.currentProps.id].top = this.state.y;
+        // currentBotForm[this.props.currentProps.index][this.props.currentProps.id].left =  this.state.x;
+        //
+        // this.props.updateForm(currentBotForm);
+        this.setState({
+            dragStatus: true
+        })
+    }
 
     save = () => {
         this.props.blockedUI();
@@ -143,6 +184,82 @@ export class EditBot extends Component {
         )
     }
 
+    handleOpen = () => {
+        this.setState({
+            open: true
+        });
+    };
+
+    handleClose = () => {
+        this.setState({
+            open: false
+        });
+    };
+
+    buttonClick = () =>{
+        const currentBotForm = this.props.currentBot.forms;
+        const [nameForm] = Object.entries(currentBotForm[this.props.currentProps.index]);
+
+        const allButtons = currentBotForm[this.props.currentProps.index][nameForm[0]].child[this.props.currentProps.id].buttons;
+        var max = 0;
+        for (let [key2, value2] of Object.entries(allButtons)) {
+            const expl = key2.toString().split('_');
+            if ( expl[1] > max ){
+                max = parseInt(expl[1]);
+            }
+        }
+        max += 1;
+
+        // change form
+        const newname = 'btn_' + max;
+        currentBotForm[this.props.currentProps.index][nameForm[0]].child[this.props.currentProps.id].buttons[newname] = {
+            name: "",
+            type: "goForm",
+            data: ""
+        }
+        this.props.updateForm(currentBotForm);
+
+        // change props
+        const data = {
+            index: this.props.currentProps.index,
+            id: this.props.currentProps.id,
+            props: {
+                buttons: currentBotForm[this.props.currentProps.index][nameForm[0]].child[this.props.currentProps.id].buttons
+            }
+        };
+
+        this.props.setCurrentProps(data);
+
+        this.handleClose();
+    }
+
+    createForm = () => {
+        const currentBotForm =  Object.assign({},this.props.currentBot.forms);
+        var max = 0;
+        for (let [key, value] of Object.entries(currentBotForm)) {
+            if ( key > max ){
+                max = parseInt(key);
+            }
+        }
+
+        max += 1;
+        const form_id = max +1;
+        currentBotForm[2] = {
+            ['form_'+form_id]: {
+                name: "Форма " + form_id,
+                command: null,
+                top: 0,
+                left: 0,
+                child: {}
+            }
+        };
+
+
+        this.props.updateForm(currentBotForm);
+        this.handleClose();
+    }
+
+
     render() {
         const { classes } = this.props;
 
@@ -163,7 +280,7 @@ export class EditBot extends Component {
                 const x = obj[i][idForm].left;
                 const y = obj[i][idForm].top;
 
-                items.push(<Draggable defaultPosition={ {x: x, y:y }} onDrag={this.handleDrag} grid={[25, 25]}>
+                items.push(<Draggable defaultPosition={ {x: x, y:y }} onDrag={this.handleDrag} grid={[5, 5]}>
                                 <div style={ {width: 200}}>
                                     <Form name={name} id={idForm} index={i} child={child}/>
                                 </div>
@@ -177,6 +294,16 @@ export class EditBot extends Component {
             }
         }
 
+        const actions = [
+            { icon: <CallToActionOutlinedIcon />, name: 'Form', onClick: this.createForm },
+        ];
+
+        if( this.props.currentProps.props.hasOwnProperty('buttons') ){
+            actions.push({
+                icon: <ViewStreamIcon />, name: 'Button', onClick: this.buttonClick
+            })
+        }
+
         return (
                 <div>
 
@@ -187,18 +314,46 @@ export class EditBot extends Component {
                             </div>
                         </Grid>
                         <Grid item xs={8}>
-                            <Tooltip title="Save" aria-label="Save" className={classes.absoluteSave} >
-                                <Fab color="secondary" onClick={this.save } >
-                                    <SaveIcon />
-                                </Fab>
-                            </Tooltip>
+                            <Zoom timeout={{
+                                enter: '100ms',
+                                exit: '100ms',
+                            }}
+                                  in={true}
+                                  style={{
+                                      transitionDelay: '30ms'
+                                  }}>
+                                <Tooltip title="Save" aria-label="Save" className={classes.absoluteSave} >
+                                    <Fab color="secondary" onClick={this.save } >
+                                        <SaveIcon />
+                                    </Fab>
+                                </Tooltip>
+                            </Zoom>
 
-                            <Tooltip title="Add" aria-label="add" className={classes.absolute} >
-                                <Fab color="primary" >
-                                    <AddIcon />
-                                </Fab>
-                            </Tooltip>
+                            {/*<Tooltip title="Add" aria-label="add" className={classes.absolute} >*/}
+                            {/*    <Fab color="primary" >*/}
+                            {/*        <AddIcon />*/}
+                            {/*    </Fab>*/}
+                            {/*</Tooltip>*/}
 
+                            <Backdrop open={this.state.open} style={{zIndex: '9998'}}/>
+                            <SpeedDial
+                                ariaLabel="SpeedDial tooltip example"
+                                className={classes.absolute}
+                                icon={<SpeedDialIcon />}
+                                onClose={this.handleClose}
+                                onOpen={this.handleOpen}
+                                open={this.state.open}
+                            >
+                                {actions.map((action) => (
+                                    <SpeedDialAction
+                                        key={action.name}
+                                        icon={action.icon}
+                                        tooltipTitle={action.name}
+                                        tooltipOpen
+                                        onClick={action.onClick}
+                                    />
+                                ))}
+                            </SpeedDial>
 
                             <div style={{ height: '839px', position: 'relative', overflow: 'auto', padding: '0'}}>
                                 <div style={{ padding: '10px'}}>
@@ -252,6 +407,9 @@ const mapDispatchToProps = dispatch => ({
     },
     logout: function(){
         dispatch( logout())
+    },
+    setCurrentProps: function(data){
+        dispatch( setCurrentProps(data) );
     }
 })
 

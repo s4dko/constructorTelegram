@@ -111,4 +111,9 @@ class BotController extends Controller
 
         return false;
     }
+
+
+    public function test(){
+        return view('home');
+    }
 }

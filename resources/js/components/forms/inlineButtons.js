@@ -18,7 +18,6 @@ export class InlineButtons extends Base {
         this.state = {
             name: "inlineButtons",
             props: {
-                name: "",
                 buttons: {
                     btn_1:{
                         type: "goForm",

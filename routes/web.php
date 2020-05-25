@@ -34,7 +34,7 @@ Route::middleware('auth:api')->post('/bot/save', 'BotController@save');
 Route::middleware('auth:api')->post('/bot/settings/save', 'BotController@saveSettings');
 
 
-//Route::get('/setWebHook', 'TelegramApiController@show');
+Route::get('/test', 'BotController@test');
 
 Route::get('/bots/{idBot}/getUpdates/{offset}', 'TelegramApiController@getUpdates')->name('botsUpdates');
 

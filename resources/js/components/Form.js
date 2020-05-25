@@ -9,6 +9,9 @@ import {updateForms} from "../actions/currentBot_action";
 import Label from "./forms/label";
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import {deleteCurrentComponent} from "../actions/currentComponent_action";
+import InlineButtons from "./forms/inlineButtons";
+import Picture from "./forms/picture";
+import {isEmpty} from "lodash";
 
 export class Form extends Component {
 
@@ -38,11 +41,11 @@ export class Form extends Component {
             const originalName = expl[0];
             const number = expl[1];
 
-            ;
+
             if ( originalName == this.props.currentComponent.name ){
                 console.log(number+ ' > ' + max );
                 if ( number > max )
-                    max = number;
+                    max = parseInt(number);
             }
         }
 
@@ -58,7 +61,7 @@ export class Form extends Component {
         //     }
         // }
 
-        console.log(newname);
+        // console.log(newname);
         currentBotForm[this.props.index][nameForm[0]].child[newname] = this.props.currentComponent.props
         this.props.updateForm(currentBotForm);
         this.props.deleteCurrentComponent();
@@ -81,14 +84,23 @@ export class Form extends Component {
     render(){
         const items = [];
 
-        if ( this.props.child ){
+        if ( !isEmpty(this.props.child)){
             for ( var idComponent in this.props.child ){
                 const nameComponent = idComponent.split('_')[0];
                 switch( nameComponent){
                     case 'label':
                         items.push(<Label status="form"  idForm={this.props.id} indexForm={this.props.index} id={idComponent} />)
+                        break;
+                    case 'inlineButtons':
+                        items.push(<InlineButtons status="form"  idForm={this.props.id} indexForm={this.props.index} id={idComponent}/>);
+                        break;
+                    case 'picture':
+                        items.push(<Picture status="form"  idForm={this.props.id} indexForm={this.props.index} id={idComponent}/>);
+                        break;
                 }
             }
+        }else{
+            items.push(<div className={'component_clear'}>No components</div>)
         }
 
 

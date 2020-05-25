@@ -37,6 +37,7 @@ const styles = theme => ({
     },
     nested: {
         paddingLeft: theme.spacing(4),
+        paddingBottom: 0
     },
 });
 

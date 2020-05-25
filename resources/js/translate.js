@@ -4,7 +4,8 @@ export default function translate(name) {
         text: "Text",
         type: "Type",
         data: "Action data",
-        command: "Command"
+        command: "Command",
+        signature: "Signature"
     };
 
     return translate[name];
