@@ -88,7 +88,12 @@ class MenuAppBar extends Component{
                         <Grid container alignItems={'center'}>
                             <Grid item xs={2}>
                                 <div class={'logo'}>
-                                    <span><span style={ {color: '#1b5ac3', fontWeight: '800'}}>Bot</span>paint</span>
+                                    <span>
+                                        <img src="/images/logo.png" />
+                                    </span>
+                                    <span>
+                                        <span style={ {color: '#1b5ac3', fontWeight: '700'}}>Bot</span><span>paint</span>
+                                    </span>
                                 </div>
                             </Grid>
 

@@ -11,6 +11,8 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import {deleteCurrentComponent} from "../actions/currentComponent_action";
 import InlineButtons from "./forms/inlineButtons";
 import Picture from "./forms/picture";
+import Fork from "./forms/fork";
+import NavButtons from "./forms/nav_buttons";
 import {isEmpty} from "lodash";
 
 export class Form extends Component {
@@ -96,6 +98,12 @@ export class Form extends Component {
                         break;
                     case 'picture':
                         items.push(<Picture status="form"  idForm={this.props.id} indexForm={this.props.index} id={idComponent}/>);
+                        break;
+                    case 'fork':
+                        items.push(<Fork status="form"  idForm={this.props.id} indexForm={this.props.index} id={idComponent}/>);
+                        break;
+                    case 'navButtons':
+                        items.push(<NavButtons status="form"  idForm={this.props.id} indexForm={this.props.index} id={idComponent}/>);
                         break;
                 }
             }

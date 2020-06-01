@@ -28,6 +28,13 @@ import HttpIcon from '@material-ui/icons/Http';
 import Label from   './forms/label'
 import InlineButtons from "./forms/inlineButtons";
 import Picture from "./forms/picture";
+import File from "./forms/file";
+import Music from "./forms/music";
+import Video from "./forms/video";
+import NavButtons from "./forms/nav_buttons";
+import Request from "./forms/request";
+import Rss from "./forms/rss";
+import Fork from "./forms/fork";
 
 const styles = theme => ({
     root: {
@@ -48,7 +55,8 @@ export class PanelComponent extends Component {
 
         this.state = {
             open: true,
-            open2: true
+            open2: true,
+            open3: true
         }
     }
 
@@ -65,6 +73,12 @@ export class PanelComponent extends Component {
     handleClick2 = (e) => {
         this.setState({
             open2: !this.state.open2
+        });
+    };
+
+    handleClick3 = (e) => {
+        this.setState({
+            open3: !this.state.open3
         });
     };
 
@@ -97,6 +111,18 @@ export class PanelComponent extends Component {
                             <ListItem className={classes.nested}>
                                 <Picture status="component"/>
                             </ListItem>
+                            <ListItem className={classes.nested}>
+                                <File status="component"/>
+                            </ListItem>
+                            <ListItem className={classes.nested}>
+                                <Music status="component"/>
+                            </ListItem>
+                            <ListItem className={classes.nested}>
+                                <Video status="component"/>
+                            </ListItem>
+                            <ListItem className={classes.nested}>
+                                <NavButtons status="component"/>
+                            </ListItem>
                             {/*<ListItem button className={classes.nested}>*/}
                             {/*    <ListItemIcon>*/}
                             {/*        <RadioButtonCheckedIcon />*/}
@@ -107,17 +133,30 @@ export class PanelComponent extends Component {
                     </Collapse>
 
 
+                    <ListItem button onClick={this.handleClick3}>
+                        <ListItemText primary="Conditional" />
+                        {this.state.open3 ? <ExpandLess /> : <ExpandMore />}
+                    </ListItem>
+                    <Collapse in={this.state.open3} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem className={classes.nested}>
+                                <Fork status="component"/>
+                            </ListItem>
+                        </List>
+                    </Collapse>
+
+
                     <ListItem button onClick={this.handleClick2}>
                         <ListItemText primary="Extended" />
                         {this.state.open2 ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                     <Collapse in={this.state.open2} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
-                                <ListItemIcon>
-                                    <HttpIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Http request" />
+                            <ListItem className={classes.nested}>
+                                <Request status="component"/>
+                            </ListItem>
+                            <ListItem className={classes.nested}>
+                                <Rss status="component"/>
                             </ListItem>
                         </List>
                     </Collapse>

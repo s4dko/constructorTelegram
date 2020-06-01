@@ -234,7 +234,7 @@ export class EditBot extends Component {
     }
 
     createForm = () => {
-        const currentBotForm =  Object.assign({},this.props.currentBot.forms);
+        var currentBotForm =  Object.assign({},this.props.currentBot.forms);
         var max = 0;
         for (let [key, value] of Object.entries(currentBotForm)) {
             if ( key > max ){
@@ -244,7 +244,7 @@ export class EditBot extends Component {
 
         max += 1;
         const form_id = max +1;
-        currentBotForm[2] = {
+        currentBotForm[max] = {
             ['form_'+form_id]: {
                 name: "Форма " + form_id,
                 command: null,
