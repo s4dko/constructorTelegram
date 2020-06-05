@@ -103,32 +103,34 @@ class MenuAppBar extends Component{
 
                             <Grid item xs={8}>
 
-                                { name == 'bot' ? (
-                                    <div style={ {paddingLeft: 20}}>
-                                        <IconButton
-                                            id={'icon_back'}
-                                            aria-label="account of current user"
-                                            aria-controls="menu-appbar"
-                                            aria-haspopup="true"
-                                            color="inherit"
-                                            onClick={() => history.push('/dashboard')}
-                                        ><KeyboardArrowLeftIcon /></IconButton>
-                                        <label className={'nameBot'} htmlFor={'icon_back'}>{this.props.currentBot.name}</label>
+                                { this.props.user.isAuth != false && (
+                                    <div>
+                                        { name == 'bot' ? (
+                                            <div style={ {paddingLeft: 20}}>
+                                                <IconButton
+                                                    id={'icon_back'}
+                                                    aria-label="account of current user"
+                                                    aria-controls="menu-appbar"
+                                                    aria-haspopup="true"
+                                                    color="inherit"
+                                                    onClick={() => history.push('/dashboard')}
+                                                ><KeyboardArrowLeftIcon /></IconButton>
+                                                <label className={'nameBot'} htmlFor={'icon_back'}>{this.props.currentBot.name}</label>
 
-                                        <span className={'bot_menu'}>
-                                            <span className={`menuButton ${name == 'bot' && botParam == null ? 'activeButton' : ''}`}  onClick={() => history.push( {pathname: '/bot/'+botId})}><AppsIcon fontSize={'small'}/> Constructor</span>
-                                            <span className={`menuButton ${botParam == 'settings' ? 'activeButton' : ''}`} onClick={() => history.push( {pathname: '/bot/'+botId+'/settings' })} ><SettingsIcon fontSize={'small'}/> Settings</span>
-                                            <span className={`menuButton ${botParam == 'messages' ? 'activeButton' : ''}`} ><ForumIcon fontSize={'small'}/> Messages</span>
-                                        </span>
-                                    </div>
-                                ) : (
-                                    <div style={ {paddingLeft: 20}}>
-                                        <span className={`menuButton ${name == 'dashboard' ? 'activeButton' : ''}`} onClick={() => history.push('/dashboard')} ><DashboardIcon /> Dashboard</span>
-                                        <span className={`menuButton ${name == 'settings' ? 'activeButton' : ''}`} onClick={() => history.push('/settings')} ><SettingsIcon /> Settings</span>
+                                                <span className={'bot_menu'}>
+                                                    <span className={`menuButton ${name == 'bot' && botParam == null ? 'activeButton' : ''}`}  onClick={() => history.push( {pathname: '/bot/'+botId})}><AppsIcon fontSize={'small'}/> Constructor</span>
+                                                    <span className={`menuButton ${botParam == 'settings' ? 'activeButton' : ''}`} onClick={() => history.push( {pathname: '/bot/'+botId+'/settings' })} ><SettingsIcon fontSize={'small'}/> Settings</span>
+                                                    <span className={`menuButton ${botParam == 'messages' ? 'activeButton' : ''}`} ><ForumIcon fontSize={'small'}/> Messages</span>
+                                                </span>
+                                            </div>
+                                        ) : (
+                                            <div style={ {paddingLeft: 20}}>
+                                                <span className={`menuButton ${name == 'dashboard' ? 'activeButton' : ''}`} onClick={() => history.push('/dashboard')} ><DashboardIcon /> Dashboard</span>
+                                                <span className={`menuButton ${name == 'settings' ? 'activeButton' : ''}`} onClick={() => history.push('/settings')} ><SettingsIcon /> Settings</span>
+                                            </div>
+                                        )}
                                     </div>
                                 )}
-
-
 
 
 
